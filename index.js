@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 // Importa objeto de conexão
 const connection = require("./database/database");
 const Pergunta = require("./database/Pergunta");
+const Resposta = require("./database/Resposta")
 
 // DATABAE
 connection
@@ -59,16 +60,35 @@ app.get("/pergunta/:id", (req,res) => {
         where: {id: id}
     }).then(pergunta => {
         if(pergunta != undefined){ // Pergunta achada
-            // Exibir a pagina pergunta e passar para o render
-            // a pergunta que está sendo exibida
-            //  Manda a pergunta encontrada para a view
-            res.render("pergunta",{
-                pergunta: pergunta
+
+            Resposta.findAll({
+                where:{perguntaid: pergunta.id}, order: [['id','DESC']]
+            }).then(respostas => {
+                // Exibir a pagina pergunta e passar para o render
+                // a pergunta que está sendo exibida
+                // Manda a pergunta encontrada para a view
+                res.render("pergunta",{
+                    pergunta: pergunta,
+                    respostas: respostas
+                });                
             });
         }
         else{ // Não encontrada
             res.redirect("/");
         }
+    });
+});
+
+app.post("/responder", (req,res) => {
+    var corpo = req.body.corpo;
+    // nome do input para pegar o id da pergunta
+    var perguntaId = req.body.pergunta
+
+    Resposta.create({
+        corpo: corpo,
+        perguntaId: perguntaId
+    }).then(() => {
+       res.redirect("/pergunta/"+perguntaId); 
     });
 });
 
