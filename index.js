@@ -53,6 +53,25 @@ app.post("/salvarpergunta", (req, res)=>{
     });
 });
 
+app.get("/pergunta/:id", (req,res) => {
+    var id = req.params.id;
+    Pergunta.findOne({
+        where: {id: id}
+    }).then(pergunta => {
+        if(pergunta != undefined){ // Pergunta achada
+            // Exibir a pagina pergunta e passar para o render
+            // a pergunta que está sendo exibida
+            //  Manda a pergunta encontrada para a view
+            res.render("pergunta",{
+                pergunta: pergunta
+            });
+        }
+        else{ // Não encontrada
+            res.redirect("/");
+        }
+    });
+});
+
 app.listen(8080, ()=>{
     console.log("Aplicação rodando!");
 });
