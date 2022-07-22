@@ -12,14 +12,16 @@
             <label for="">Resposta:</label>
             <textarea name="corpo" placeholder="Digite sua resposta" class="form-control"></textarea>
             <input type="hidden" name="pergunta" value="<%= pergunta.id%>">
-            <br><button type="submit" class="btn btn-primary">Responder</button>
+            <div class="d-flex justify-content-between botoes">
+                <button class="btn btn-primary">Responder</button>
+                <a href="/" class="btn btn-primary">Voltar </a>
+            </div>
         </form>
         <hr>
         <h3>Respostas</h3>
         <hr>
-        <% respostas.forEach(resposta => { %>
-            <br>
-            <div class="card">
+        <% respostas.forEach(resposta => { %>     
+            <div class="card mt-3">
                 <div class="card-body">
                     <p><%= resposta.corpo %></p>
                 </div>
