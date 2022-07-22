@@ -27,7 +27,9 @@ app.use(bodyParser.json());
 // Rotas
 app.get("/", function(req,res){
     // Equivalente a Select * from
-    Pergunta.findAll({raw: true}).then(perguntas => {
+    Pergunta.findAll({raw: true, order:[
+        ['id','DESC']
+    ]}).then(perguntas => {
         res.render("index.ejs",{
             perguntas:perguntas
         });
