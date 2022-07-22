@@ -6,6 +6,10 @@ body{
     margin-top: 16px;
 }
 
+.navbar{
+    padding-top: 50px;
+}
+
 #formulario-pergunta{
     margin-top: 5vh;
 }
