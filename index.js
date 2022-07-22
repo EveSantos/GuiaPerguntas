@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require("body-parser");
 // Importa objeto de conexão
 const connection = require("./database/database");
+const Pergunta = require("./database/Pergunta");
 
 // DATABAE
 connection
@@ -35,7 +36,14 @@ app.get("/perguntar", function(req,res){
 app.post("/salvarpergunta", (req, res)=>{
     var titulo = req.body.titulo;
     var descricao = req.body.descricao;
-    res.send("Form recebido! titulo " + titulo + " " + "descricao " + descricao);
+    // Pra salvar um dado dentro de uma table precisa pegar o model 
+    // dessa tabela e atraves dele chamar o metodo create
+    Pergunta.create({
+        titulo: titulo,
+        descricao: descricao
+    }).then(() => {
+        res.redirect("/");
+    });
 });
 
 app.listen(8080, ()=>{
