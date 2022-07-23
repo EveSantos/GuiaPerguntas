@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 const connection = require("./database");
 
 // Passando o nome da tabela (respoostas)
-const Resposta = connection.Sequelize.define("/respostas", {
+const Resposta = Sequelize.define("respostas", {
     corpo: {
         type: Sequelize.TEXT,
         allowNull: false
