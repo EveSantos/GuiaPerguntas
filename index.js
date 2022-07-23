@@ -7,7 +7,7 @@ const connection = require("./database/database");
 const Pergunta = require("./database/Pergunta");
 const Resposta = require("./database/Resposta")
 
-if(process.env.ENVIROMENT = 'develop'){
+if(process.env.ENVIROMENT == 'develop'){
 
     // DATABASE
     connection
