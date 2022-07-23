@@ -7,7 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
-  
   "repository": {
     "type": "git",
     "url": "git+https://github.com/EveSantos/GuiaPerguntas.git"
@@ -20,9 +19,12 @@
   "homepage": "https://github.com/EveSantos/GuiaPerguntas#readme",
   "dependencies": {
     "body-parser": "^1.20.0",
+    "dotenv": "^16.0.1",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
     "mysql2": "^2.3.3",
+    "pg": "^8.7.3",
+    "pg-hstore": "^2.3.4",
     "sequelize": "^6.21.3"
   }
 }

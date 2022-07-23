@@ -1,20 +1,32 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
+require("dotenv").config();
 // Importa objeto de conexão
 const connection = require("./database/database");
 const Pergunta = require("./database/Pergunta");
 const Resposta = require("./database/Resposta")
 
-// DATABAE
-connection
-    .authenticate()
-    .then(()=>{
-        console.log("Conexão feita com sucesso");
-    })
-    .catch((msgErro) => {
-        console.log(msgErro);
+if(process.env.ENVIROMENT = 'develop'){
+
+    // DATABASE
+    connection
+        .authenticate()
+        .then(()=>{
+            console.log("Conexão feita com sucesso");
+        })
+        .catch((msgErro) => {
+            console.log(msgErro);
+        });
+}
+else{
+    connection.connect((err)=>{
+        if(err){
+            throw err;
+        }
+        console.log("Conexao feita com sucesso!")
     });
+}
 
 
 // Definindo para o Express que usará o ejs como View Engine
