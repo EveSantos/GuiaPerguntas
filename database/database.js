@@ -14,7 +14,7 @@ if(process.env.ENVIROMENT = 'develop'){
     });   
 }
 else{
-    console.log(process.env);
+    console.log('production');
     connection = new Client({
         connectionString: process.env.DATABASE_URL,
         ssl: {
