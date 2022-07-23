@@ -7,26 +7,15 @@ const connection = require("./database/database");
 const Pergunta = require("./database/Pergunta");
 const Resposta = require("./database/Resposta")
 
-if(process.env.ENVIROMENT == 'develop'){
-
-    // DATABASE
-    connection
-        .authenticate()
-        .then(()=>{
-            console.log("Conexão feita com sucesso");
-        })
-        .catch((msgErro) => {
-            console.log(msgErro);
-        });
-}
-else{
-    connection.connect((err)=>{
-        if(err){
-            throw err;
-        }
-        console.log("Conexao feita com sucesso!")
+// DATABAE
+connection
+    .authenticate()
+    .then(()=>{
+        console.log("Conexão feita com sucesso");
+    })
+    .catch((msgErro) => {
+        console.log(msgErro);
     });
-}
 
 
 // Definindo para o Express que usará o ejs como View Engine
