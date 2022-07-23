@@ -1,8 +1,9 @@
 const Sequelize = require("sequelize");
 const connection = require("./database");
+require("dotenv").config();
 
 // Definição do model
-const Pergunta = connection.define('pergunta', {
+const Pergunta = connection.Sequelize.define('pergunta', {
     titulo:{
         type: Sequelize.STRING,
         allowNull: false
